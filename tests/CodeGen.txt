@@ -1,0 +1,12 @@
+
+
+npx playwright codegen
+
+npx playwright codegen  "http://www.google.com"
+
+npx playwright codegen --browser chromium "http://www.google.com"
+
+npx playwright codegen  -o test.spec.ts
+
+
+
