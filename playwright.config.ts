@@ -33,6 +33,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless:false,
   // viewport:{width:1528,height:732}
+    storageState:'logindetails.json'
   },
 
   /* Configure projects for major browsers */

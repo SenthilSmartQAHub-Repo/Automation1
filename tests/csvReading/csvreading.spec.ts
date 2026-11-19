@@ -2,6 +2,7 @@
 import { test, expect } from '@playwright/test';
 import {parse} from "csv-parse/sync"
 import fs from "fs"
+
 //npm install csv-parse
 
 const csvdata:any[]=parse(fs.readFileSync("testdata/testdata.csv"),

@@ -1,24 +1,28 @@
 import { test, expect } from '@playwright/test';
 
+import {parse} from "csv-parse/sync"
+import fs from "fs"
 
-//  test.use({
-//     viewport: { width: 1528, height: 732 }
-//   })
+const csvdata:any[]=parse(fs.readFileSync("Testdata/testdata.csv"),
+{
+columns:true,
+skip_empty_lines:true,
+skip_records_with_empty_values:true
+})
 
-test('has title',{tag:['@Smoke',"@Regression"]},async ({ page }) => {
-  await page.goto('https://senthilsmartqahub.blogspot.com/2026/09/employeemanagementportal.html');
- // await page.setViewportSize({width:1528,height:732})
-  await page.waitForTimeout(5000)
-});
-test('open google ',{tag:"@Regression"}, async ({ page }) => {
-  await page.goto('https://www.google.com');
-  await page.waitForTimeout(5000)
-});
-test('open facebook @Smoke', async ({ page }) => {
-  await page.goto('https://www.facebook.com');
-  await page.waitForTimeout(5000)
-});
+for(let i=0;i<csvdata.length;i++){
 
-// Run command: 
-// npx playwright test --grep "@Smoke"
-//npx playwright test --grep "@Smoke|@Regression"
+test('csv data ${i}', async ({ page }) => {
+
+await page.goto('https://senthilsmartqahub.blogspot.com/2025/01/doctor-appointment-body-font-family.html');
+
+await page.getByPlaceholder('Enter your full name').fill(csvdata[i].FullName)
+
+await page.getByPlaceholder('Enter your last name').fill(csvdata[i].LastName)
+
+await page.waitForTimeout(5000)
+
+
+})
+
+}
